@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#f8fafc">
+  <meta name="description" content="Plataforma en reconstrucción. Vuelve pronto.">
+  <title>Mantenimiento · Reconstrucción</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --color-bg-start: rgba(226, 240, 255, 0.5);
+      --color-bg-end: rgba(248, 250, 252, 0.98);
+      --card-bg: rgba(255, 255, 255, 0.92);
+      --card-border: rgba(255, 255, 255, 0.75);
+      --text-primary: #0a0f1c;
+      --text-secondary: #1e2a44;
+      --text-muted: #475569;
+      --accent: #2563eb;
+      --accent-soft: rgba(37, 99, 235, 0.12);
+      --accent-border: rgba(37, 99, 235, 0.25);
+      --shadow-card: 0 30px 55px -20px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.02);
+      --transition-default: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+      background: #f1f5f9;
+      color: var(--text-primary);
+      line-height: 1.4;
+      min-height: 100vh;
+      position: relative;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .bg-ambient {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background: radial-gradient(circle at 30% 15%, var(--color-bg-start), var(--color-bg-end) 80%);
+    }
+
+    .bg-ambient::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle at 1px 1px, rgba(37, 99, 235, 0.08) 1.2px, transparent 1.2px);
+      background-size: 28px 28px;
+      pointer-events: none;
+      opacity: 0.7;
+    }
+
+    .main-container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(1rem, 5vw, 2.8rem);
+      position: relative;
+      z-index: 2;
+    }
+
+    .card {
+      max-width: 760px;
+      width: 100%;
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: clamp(2rem, 6vw, 3rem);
+      box-shadow: var(--shadow-card);
+      border: 1px solid var(--card-border);
+      padding: clamp(1.8rem, 5vw, 3.2rem) clamp(1.5rem, 5vw, 2.5rem);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      will-change: transform;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 40px 65px -22px rgba(0, 0, 0, 0.25);
+      border-color: rgba(255, 255, 255, 0.9);
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      background: var(--accent-soft);
+      backdrop-filter: blur(4px);
+      padding: 0.5rem 1.4rem;
+      border-radius: 200px;
+      width: fit-content;
+      font-size: clamp(0.75rem, 3.5vw, 0.9rem);
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 2rem;
+      border: 1px solid var(--accent-border);
+      letter-spacing: -0.2px;
+      transition: var(--transition-default);
+    }
+
+    .badge-pulse {
+      animation: subtlePulse 0.35s ease-out;
+    }
+
+    @keyframes subtlePulse {
+      0% {
+        transform: scale(1);
+        background: var(--accent-soft);
+      }
+      50% {
+        transform: scale(1.02);
+        background: rgba(37, 99, 235, 0.2);
+        border-color: rgba(37, 99, 235, 0.45);
+      }
+      100% {
+        transform: scale(1);
+        background: var(--accent-soft);
+      }
+    }
+
+    .status-badge i {
+      font-size: 0.85em;
+      opacity: 0.9;
+      transition: transform 0.2s;
+    }
+
+    .status-badge:hover .fa-cog {
+      animation: spinSoft 2s linear infinite;
+    }
+
+    @keyframes spinSoft {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 8vw, 3.8rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #0a0f1c 0%, #1e293b 95%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      line-height: 1.2;
+      margin-bottom: 1.25rem;
+    }
+
+    .description {
+      font-size: clamp(1rem, 4vw, 1.2rem);
+      color: var(--text-secondary);
+      font-weight: 450;
+      line-height: 1.5;
+      max-width: 92%;
+      margin-bottom: 2rem;
+    }
+
+    .progress-section {
+      margin: 1.6rem 0 1.8rem;
+      width: 100%;
+    }
+
+    .progress-track {
+      background: rgba(0, 0, 0, 0.06);
+      border-radius: 100px;
+      height: 5px;
+      width: 100%;
+      overflow: hidden;
+      box-shadow: inset 0 1px 1px rgba(0,0,0,0.02);
+    }
+
+    .progress-bar-animated {
+      width: 45%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), #7c3aed, var(--accent));
+      background-size: 200% 100%;
+      border-radius: 100px;
+      animation: shimmerMove 2.2s ease-in-out infinite alternate;
+    }
+
+    @keyframes shimmerMove {
+      0% {
+        width: 18%;
+        background-position: 0% 50%;
+      }
+      50% {
+        width: 62%;
+        background-position: 100% 50%;
+      }
+      100% {
+        width: 38%;
+        background-position: 0% 50%;
+      }
+    }
+
+    .eta-note {
+      font-size: 0.7rem;
+      color: #5b6e8c;
+      margin-top: 1.2rem;
+      display: inline-block;
+      letter-spacing: -0.2px;
+    }
+
+    @keyframes fadeUp {
+      0% {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card > * {
+      animation: fadeUp 0.5s cubic-bezier(0.2, 0.9, 0.3, 1.1) forwards;
+    }
+
+    .status-badge { animation-delay: 0.02s; }
+    .hero-title { animation-delay: 0.07s; }
+    .description { animation-delay: 0.12s; }
+    .progress-section { animation-delay: 0.17s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      .card:hover {
+        transform: none;
+      }
+      .progress-bar-animated {
+        animation: none;
+        width: 35%;
+        background: var(--accent);
+      }
+      .status-badge:hover .fa-cog {
+        animation: none;
+      }
+      .badge-pulse {
+        animation: none;
+      }
+    }
+
+    @media (max-width: 550px) {
+      .description {
+        max-width: 100%;
+      }
+      .card {
+        padding: 1.8rem 1.5rem;
+      }
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 8px;
+    }
+
+    @media (forced-colors: active) {
+      .status-badge {
+        border: 2px solid ButtonText;
+      }
+      .progress-track {
+        border: 1px solid CanvasText;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="bg-ambient" aria-hidden="true"></div>
+<div class="main-container">
+  <main class="card" role="main" aria-labelledby="main-title">
+    <div class="status-badge" aria-live="polite" aria-label="Estado de la plataforma">
+      <i class="fas fa-cog fa-fw" aria-hidden="true"></i>
+      <span id="dynamicStatusText">RECONSTRUCCIÓN EN PROGRESO</span>
+      <i class="fas fa-sync-alt fa-fw" aria-hidden="true"></i>
+    </div>
+
+    <h1 id="main-title" class="hero-title">
+      Plataforma en<br>reconstrucción
+    </h1>
+    
+    <p class="description">
+      Renovación total. Vuelve pronto.
+    </p>
+
+    <div class="progress-section" aria-hidden="true">
+      <div class="progress-track">
+        <div class="progress-bar-animated"></div>
+      </div>
+      <div class="eta-note">
+        <i class="fas fa-code-branch" aria-hidden="true"></i> optimización activa · fase oficial
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+  (function() {
+    "use strict";
+    
+    const statusSpan = document.getElementById('dynamicStatusText');
+    const badgeElement = document.querySelector('.status-badge');
+    
+    const rotatingMessages = [
+      "RECONSTRUCCIÓN EN PROGRESO",
+      "MEJORANDO INTERFAZ Y UX",
+      "MIGRANDO A ARQUITECTURA ÁGIL",
+      "OPTIMIZACIÓN DE RENDIMIENTO",
+      "FASE FINAL: PULIENDO DETALLES",
+      "NUEVAS FUNCIONALIDADES PRONTO"
+    ];
+    
+    let currentIndex = 0;
+    let intervalId = null;
+    let isPageVisible = true;
+    
+    function updateStatusTextSmooth() {
+      if (!statusSpan || !badgeElement) return;
+      
+      const nextIndex = (currentIndex + 1) % rotatingMessages.length;
+      const newMessage = rotatingMessages[nextIndex];
+      
+      badgeElement.classList.add('badge-pulse');
+      statusSpan.textContent = newMessage;
+      currentIndex = nextIndex;
+      
+      setTimeout(() => {
+        if (badgeElement) {
+          badgeElement.classList.remove('badge-pulse');
+        }
+      }, 350);
+    }
+    
+    function startRotation() {
+      if (intervalId) clearInterval(intervalId);
+      intervalId = setInterval(() => {
+        if (isPageVisible && statusSpan && document.body) {
+          updateStatusTextSmooth();
+        }
+      }, 4200);
+    }
+    
+    function handleVisibilityChange() {
+      isPageVisible = !document.hidden;
+      if (!isPageVisible) {
+        if (intervalId) {
+          clearInterval(intervalId);
+          intervalId = null;
+        }
+      } else {
+        if (!intervalId) {
+          startRotation();
+        }
+      }
+    }
+    
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        startRotation();
+        document.addEventListener('visibilitychange', handleVisibilityChange);
+      });
+    } else {
+      startRotation();
+      document.addEventListener('visibilitychange', handleVisibilityChange);
+    }
+    
+    window.addEventListener('beforeunload', () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+        intervalId = null;
+      }
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    });
+  })();
+</script>
+</body>
+</html>
