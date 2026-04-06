@@ -1,0 +1,306 @@
+/* ============================================================
+   menu.css — Menú lateral principal y navegación
+   Contactos Anónimos v4.0 — Optimizado para Adaptabilidad
+   ============================================================ */
+
+/* ─── Botón hamburguesa (Mobile) ───────────────────────────── */
+.menu-toggle-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    color: var(--text-light);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.menu-toggle-trigger:hover {
+    background: rgba(37, 211, 102, 0.1);
+    border-color: var(--primary-wa);
+    color: var(--primary-wa);
+}
+
+/* ─── Overlay del menú ─────────────────────────────────────── */
+.menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition-normal);
+}
+
+.menu-overlay.is-visible {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* ─── Menú lateral ─────────────────────────────────────────── */
+.main-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: min(320px, 85vw);
+    background: linear-gradient(180deg, #0a1628 0%, #03060c 100%);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(-100%);
+    transition: transform var(--transition-normal) cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.main-menu.is-open {
+    transform: translateX(0);
+}
+
+/* ─── Header del menú ──────────────────────────────────────── */
+.menu-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-lg) var(--space-md);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(0, 0, 0, 0.2);
+    flex-shrink: 0;
+}
+
+.menu-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.menu-brand-icon {
+    border-radius: var(--radius-sm);
+    flex-shrink: 0;
+}
+
+.menu-brand-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.menu-brand-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-light);
+    line-height: 1.2;
+}
+
+.menu-brand-version {
+    font-size: 0.65rem;
+    color: var(--primary-wa);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    background: rgba(37, 211, 102, 0.1);
+    padding: 2px 8px;
+    border-radius: var(--radius-pill);
+    border: 1px solid rgba(37, 211, 102, 0.2);
+    width: fit-content;
+}
+
+.menu-close-btn {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.menu-close-btn:hover {
+    background: rgba(220, 38, 38, 0.1);
+    border-color: rgba(220, 38, 38, 0.3);
+    color: #fca5a5;
+}
+
+/* ─── Cuerpo del menú ──────────────────────────────────────── */
+.menu-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--space-md) 0;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+}
+
+.menu-body::-webkit-scrollbar {
+    width: 4px;
+}
+.menu-body::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+}
+
+/* ─── Secciones del menú ───────────────────────────────────── */
+.menu-section {
+    margin-bottom: var(--space-md);
+}
+
+.menu-section-label {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: rgba(160, 179, 217, 0.4);
+    padding: 0 var(--space-md) var(--space-sm);
+}
+
+.menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* ─── Items del menú ───────────────────────────────────────── */
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    padding: 0.8rem var(--space-md);
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    transition: all var(--transition-fast);
+    position: relative;
+}
+
+.menu-item i {
+    width: 20px;
+    text-align: center;
+    font-size: 1rem;
+    transition: color var(--transition-fast);
+}
+
+.menu-item:hover {
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text-light);
+}
+
+.menu-item:hover i {
+    color: var(--primary-wa);
+}
+
+.menu-item--active {
+    color: var(--primary-wa) !important;
+    background: rgba(37, 211, 102, 0.08) !important;
+    font-weight: 600;
+}
+
+.menu-item--active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--primary-wa);
+    border-radius: 0 4px 4px 0;
+}
+
+.menu-item--active i {
+    color: var(--primary-wa) !important;
+}
+
+.menu-item--pwa {
+    color: #60a5fa;
+}
+
+.menu-item--pwa:hover {
+    background: rgba(96, 165, 250, 0.08) !important;
+    color: #93c5fd !important;
+}
+
+/* ─── Badges ───────────────────────────────────────────────── */
+.menu-badge {
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: var(--radius-pill);
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-muted);
+    margin-left: auto;
+}
+
+.menu-badge--accent {
+    background: rgba(37, 211, 102, 0.15);
+    color: var(--primary-wa);
+    border: 1px solid rgba(37, 211, 102, 0.2);
+}
+
+.menu-badge--lang {
+    background: rgba(167, 139, 250, 0.15);
+    color: #a78bfa;
+    border: 1px solid rgba(167, 139, 250, 0.2);
+}
+
+/* ─── Footer del menú ──────────────────────────────────────── */
+.menu-footer {
+    padding: var(--space-md);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.menu-footer-copy {
+    font-size: 0.7rem;
+    color: rgba(160, 179, 217, 0.4);
+}
+
+.menu-footer-version {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.7rem;
+    color: rgba(160, 179, 217, 0.5);
+}
+
+.pwa-status-dot {
+    font-size: 0.5rem;
+    color: var(--primary-wa);
+    animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+/* ─── Responsive ───────────────────────────────────────────── */
+@media (max-width: 480px) {
+    .main-menu {
+        width: 100vw;
+        border-right: none;
+    }
+}
+
+/* Adaptabilidad para pantallas grandes (Desktop) */
+@media (min-width: 1024px) {
+    /* Si se desea un menú lateral fijo en desktop, se podría habilitar aquí */
+}

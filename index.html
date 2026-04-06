@@ -1,392 +1,321 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" dir="ltr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#f8fafc">
-  <meta name="description" content="Plataforma en reconstrucción. Vuelve pronto.">
-  <title>Mantenimiento · Reconstrucción</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <!-- ═══════════════════════════════════════════════════════════
+         META BÁSICO Y CHARSET
+    ════════════════════════════════════════════════════════════ -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-language" content="es">
 
-    :root {
-      --color-bg-start: rgba(226, 240, 255, 0.5);
-      --color-bg-end: rgba(248, 250, 252, 0.98);
-      --card-bg: rgba(255, 255, 255, 0.92);
-      --card-border: rgba(255, 255, 255, 0.75);
-      --text-primary: #0a0f1c;
-      --text-secondary: #1e2a44;
-      --text-muted: #475569;
-      --accent: #2563eb;
-      --accent-soft: rgba(37, 99, 235, 0.12);
-      --accent-border: rgba(37, 99, 235, 0.25);
-      --shadow-card: 0 30px 55px -20px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.02);
-      --transition-default: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-    }
+    <!-- ═══════════════════════════════════════════════════════════
+         SEO Y METADATOS
+    ════════════════════════════════════════════════════════════ -->
+    <title>Contactos Anónimos — Conecta sin límites | Chat Anónimo</title>
+    <meta name="description" content="Plataforma de contactos anónimos. Genera números móviles cubanos reales para chatear de forma segura y privada en WhatsApp y Telegram.">
+    <meta name="keywords" content="contactos anónimos, números móviles, WhatsApp, Telegram, chat privado, Cuba, contactos seguros">
+    <meta name="author" content="Contactos Anónimos">
+    <meta name="theme-color" content="#03060c">
+    <meta name="color-scheme" content="dark">
+    <meta name="robots" content="index, follow">
 
-    body {
-      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
-      background: #f1f5f9;
-      color: var(--text-primary);
-      line-height: 1.4;
-      min-height: 100vh;
-      position: relative;
-      font-synthesis: none;
-      text-rendering: optimizeLegibility;
-      -webkit-font-smoothing: antialiased;
-    }
+    <!-- ═══════════════════════════════════════════════════════════
+         OPEN GRAPH
+    ════════════════════════════════════════════════════════════ -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:title" content="Contactos Anónimos — Conecta sin límites">
+    <meta property="og:description" content="Plataforma de contactos anónimos. Millones de números móviles para chatear de forma segura y privada.">
+    <meta property="og:url" content="https://cuentabaneadatemp.github.io/web/">
+    <meta property="og:site_name" content="Contactos Anónimos">
+    <meta property="og:image" content="src/assets/img/favicon.svg">
 
-    .bg-ambient {
-      position: fixed;
-      inset: 0;
-      z-index: -2;
-      background: radial-gradient(circle at 30% 15%, var(--color-bg-start), var(--color-bg-end) 80%);
-    }
+    <!-- ═══════════════════════════════════════════════════════════
+         SEGURIDAD: Content Security Policy
+    ════════════════════════════════════════════════════════════ -->
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self';
+                   script-src 'self' https://cdnjs.cloudflare.com;
+                   style-src  'self' 'unsafe-inline' https://cdnjs.cloudflare.com;
+                   font-src   https://cdnjs.cloudflare.com https://fonts.gstatic.com;
+                   img-src    'self' data: https:;
+                   connect-src 'self' https://ipwho.is https://ipapi.co;
+                   frame-ancestors 'none';
+                   base-uri 'self';
+                   form-action 'self';">
 
-    .bg-ambient::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image: radial-gradient(circle at 1px 1px, rgba(37, 99, 235, 0.08) 1.2px, transparent 1.2px);
-      background-size: 28px 28px;
-      pointer-events: none;
-      opacity: 0.7;
-    }
+    <!-- ═══════════════════════════════════════════════════════════
+         FAVICON E ICONOS
+    ════════════════════════════════════════════════════════════ -->
+    <link rel="icon" type="image/svg+xml" href="src/assets/img/favicon.svg">
+    <link rel="apple-touch-icon" href="src/assets/img/pwa_icons/apple-touch-icon.png">
 
-    .main-container {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: clamp(1rem, 5vw, 2.8rem);
-      position: relative;
-      z-index: 2;
-    }
+    <!-- ═══════════════════════════════════════════════════════════
+         PWA: Web App Manifest
+    ════════════════════════════════════════════════════════════ -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-    .card {
-      max-width: 760px;
-      width: 100%;
-      background: var(--card-bg);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-radius: clamp(2rem, 6vw, 3rem);
-      box-shadow: var(--shadow-card);
-      border: 1px solid var(--card-border);
-      padding: clamp(1.8rem, 5vw, 3.2rem) clamp(1.5rem, 5vw, 2.5rem);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      will-change: transform;
-    }
+    <!-- ═══════════════════════════════════════════════════════════
+         FUENTES E ICONOS
+    ════════════════════════════════════════════════════════════ -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+          integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plh7eqjFgOtHSmom7B5/8kMxAeGgA=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer">
 
-    .card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 40px 65px -22px rgba(0, 0, 0, 0.25);
-      border-color: rgba(255, 255, 255, 0.9);
-    }
+    <!-- ═══════════════════════════════════════════════════════════
+         ESTILOS
+    ════════════════════════════════════════════════════════════ -->
+    <link rel="stylesheet" href="src/assets/css/main.css">
+    <link rel="stylesheet" href="src/assets/css/premium.css">
+    <link rel="stylesheet" href="src/assets/css/animations.css">
+    <link rel="stylesheet" href="src/assets/css/menu.css">
+    <link rel="stylesheet" href="src/assets/css/pwa.css">
 
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.65rem;
-      background: var(--accent-soft);
-      backdrop-filter: blur(4px);
-      padding: 0.5rem 1.4rem;
-      border-radius: 200px;
-      width: fit-content;
-      font-size: clamp(0.75rem, 3.5vw, 0.9rem);
-      font-weight: 600;
-      color: var(--accent);
-      margin-bottom: 2rem;
-      border: 1px solid var(--accent-border);
-      letter-spacing: -0.2px;
-      transition: var(--transition-default);
-    }
-
-    .badge-pulse {
-      animation: subtlePulse 0.35s ease-out;
-    }
-
-    @keyframes subtlePulse {
-      0% {
-        transform: scale(1);
-        background: var(--accent-soft);
-      }
-      50% {
-        transform: scale(1.02);
-        background: rgba(37, 99, 235, 0.2);
-        border-color: rgba(37, 99, 235, 0.45);
-      }
-      100% {
-        transform: scale(1);
-        background: var(--accent-soft);
-      }
-    }
-
-    .status-badge i {
-      font-size: 0.85em;
-      opacity: 0.9;
-      transition: transform 0.2s;
-    }
-
-    .status-badge:hover .fa-cog {
-      animation: spinSoft 2s linear infinite;
-    }
-
-    @keyframes spinSoft {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    .hero-title {
-      font-size: clamp(2.2rem, 8vw, 3.8rem);
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      background: linear-gradient(135deg, #0a0f1c 0%, #1e293b 95%);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-      line-height: 1.2;
-      margin-bottom: 1.25rem;
-    }
-
-    .description {
-      font-size: clamp(1rem, 4vw, 1.2rem);
-      color: var(--text-secondary);
-      font-weight: 450;
-      line-height: 1.5;
-      max-width: 92%;
-      margin-bottom: 2rem;
-    }
-
-    .progress-section {
-      margin: 1.6rem 0 1.8rem;
-      width: 100%;
-    }
-
-    .progress-track {
-      background: rgba(0, 0, 0, 0.06);
-      border-radius: 100px;
-      height: 5px;
-      width: 100%;
-      overflow: hidden;
-      box-shadow: inset 0 1px 1px rgba(0,0,0,0.02);
-    }
-
-    .progress-bar-animated {
-      width: 45%;
-      height: 100%;
-      background: linear-gradient(90deg, var(--accent), #7c3aed, var(--accent));
-      background-size: 200% 100%;
-      border-radius: 100px;
-      animation: shimmerMove 2.2s ease-in-out infinite alternate;
-    }
-
-    @keyframes shimmerMove {
-      0% {
-        width: 18%;
-        background-position: 0% 50%;
-      }
-      50% {
-        width: 62%;
-        background-position: 100% 50%;
-      }
-      100% {
-        width: 38%;
-        background-position: 0% 50%;
-      }
-    }
-
-    .eta-note {
-      font-size: 0.7rem;
-      color: #5b6e8c;
-      margin-top: 1.2rem;
-      display: inline-block;
-      letter-spacing: -0.2px;
-    }
-
-    @keyframes fadeUp {
-      0% {
-        opacity: 0;
-        transform: translateY(18px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .card > * {
-      animation: fadeUp 0.5s cubic-bezier(0.2, 0.9, 0.3, 1.1) forwards;
-    }
-
-    .status-badge { animation-delay: 0.02s; }
-    .hero-title { animation-delay: 0.07s; }
-    .description { animation-delay: 0.12s; }
-    .progress-section { animation-delay: 0.17s; }
-
-    @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-      .card:hover {
-        transform: none;
-      }
-      .progress-bar-animated {
-        animation: none;
-        width: 35%;
-        background: var(--accent);
-      }
-      .status-badge:hover .fa-cog {
-        animation: none;
-      }
-      .badge-pulse {
-        animation: none;
-      }
-    }
-
-    @media (max-width: 550px) {
-      .description {
-        max-width: 100%;
-      }
-      .card {
-        padding: 1.8rem 1.5rem;
-      }
-    }
-
-    :focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 3px;
-      border-radius: 8px;
-    }
-
-    @media (forced-colors: active) {
-      .status-badge {
-        border: 2px solid ButtonText;
-      }
-      .progress-track {
-        border: 1px solid CanvasText;
-      }
-    }
-  </style>
+    <!-- ── Scripts de Internacionalización ──────────────────── -->
+    <script src="src/assets/js/i18n.js" defer></script>
 </head>
+
 <body>
-<div class="bg-ambient" aria-hidden="true"></div>
-<div class="main-container">
-  <main class="card" role="main" aria-labelledby="main-title">
-    <div class="status-badge" aria-live="polite" aria-label="Estado de la plataforma">
-      <i class="fas fa-cog fa-fw" aria-hidden="true"></i>
-      <span id="dynamicStatusText">RECONSTRUCCIÓN EN PROGRESO</span>
-      <i class="fas fa-sync-alt fa-fw" aria-hidden="true"></i>
-    </div>
 
-    <h1 id="main-title" class="hero-title">
-      Plataforma en<br>reconstrucción
-    </h1>
-    
-    <p class="description">
-      Renovación total. Vuelve pronto.
-    </p>
-
-    <div class="progress-section" aria-hidden="true">
-      <div class="progress-track">
-        <div class="progress-bar-animated"></div>
-      </div>
-      <div class="eta-note">
-        <i class="fas fa-code-branch" aria-hidden="true"></i> optimización activa · fase oficial
-      </div>
-    </div>
-  </main>
+<!-- ── Indicador Offline ──────────────────────────────────── -->
+<div id="offlineIndicator" class="offline-indicator" role="status" aria-live="polite">
+    <i class="fas fa-wifi-slash" aria-hidden="true"></i>
+    <span>Sin conexión — Modo offline</span>
 </div>
 
-<script>
-  (function() {
-    "use strict";
-    
-    const statusSpan = document.getElementById('dynamicStatusText');
-    const badgeElement = document.querySelector('.status-badge');
-    
-    const rotatingMessages = [
-      "RECONSTRUCCIÓN EN PROGRESO",
-      "MEJORANDO INTERFAZ Y UX",
-      "MIGRANDO A ARQUITECTURA ÁGIL",
-      "OPTIMIZACIÓN DE RENDIMIENTO",
-      "FASE FINAL: PULIENDO DETALLES",
-      "NUEVAS FUNCIONALIDADES PRONTO"
-    ];
-    
-    let currentIndex = 0;
-    let intervalId = null;
-    let isPageVisible = true;
-    
-    function updateStatusTextSmooth() {
-      if (!statusSpan || !badgeElement) return;
-      
-      const nextIndex = (currentIndex + 1) % rotatingMessages.length;
-      const newMessage = rotatingMessages[nextIndex];
-      
-      badgeElement.classList.add('badge-pulse');
-      statusSpan.textContent = newMessage;
-      currentIndex = nextIndex;
-      
-      setTimeout(() => {
-        if (badgeElement) {
-          badgeElement.classList.remove('badge-pulse');
-        }
-      }, 350);
-    }
-    
-    function startRotation() {
-      if (intervalId) clearInterval(intervalId);
-      intervalId = setInterval(() => {
-        if (isPageVisible && statusSpan && document.body) {
-          updateStatusTextSmooth();
-        }
-      }, 4200);
-    }
-    
-    function handleVisibilityChange() {
-      isPageVisible = !document.hidden;
-      if (!isPageVisible) {
-        if (intervalId) {
-          clearInterval(intervalId);
-          intervalId = null;
-        }
-      } else {
-        if (!intervalId) {
-          startRotation();
-        }
-      }
-    }
-    
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', () => {
-        startRotation();
-        document.addEventListener('visibilitychange', handleVisibilityChange);
-      });
-    } else {
-      startRotation();
-      document.addEventListener('visibilitychange', handleVisibilityChange);
-    }
-    
-    window.addEventListener('beforeunload', () => {
-      if (intervalId) {
-        clearInterval(intervalId);
-        intervalId = null;
-      }
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
-    });
-  })();
-</script>
+<!-- ═══════════════════════════════════════════════════════════
+     OVERLAY DEL MENÚ (fondo oscuro)
+════════════════════════════════════════════════════════════ -->
+<div id="menuOverlay" class="menu-overlay" aria-hidden="true"></div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     MENÚ LATERAL PRINCIPAL
+════════════════════════════════════════════════════════════ -->
+<nav id="mainMenu"
+     class="main-menu"
+     role="navigation"
+     aria-label="Menú principal"
+     aria-hidden="true">
+
+    <div class="menu-header">
+        <div class="menu-brand">
+            <img src="src/assets/img/favicon.svg"
+                 alt="Contactos Anónimos"
+                 class="menu-brand-icon"
+                 width="36" height="36">
+            <div class="menu-brand-text">
+                <span class="menu-brand-name">Contactos Anónimos</span>
+                <span class="menu-brand-version">v4.0 PWA</span>
+            </div>
+        </div>
+        <button id="closeMenuBtn"
+                class="menu-close-btn"
+                type="button"
+                aria-label="Cerrar menú">
+            <i class="fas fa-times" aria-hidden="true"></i>
+        </button>
+    </div>
+
+    <!-- Secciones del menú -->
+    <div class="menu-body">
+
+        <!-- Sección: Principal -->
+        <div class="menu-section">
+            <span class="menu-section-label" data-i18n="menu.section.main">Principal</span>
+            <ul class="menu-list" role="list">
+                <li>
+                    <button class="menu-item menu-item--active"
+                            data-section="contacts"
+                            type="button"
+                            aria-current="page">
+                        <i class="fas fa-address-book" aria-hidden="true"></i>
+                        <span data-i18n="menu.contacts">Contactos</span>
+                        <span id="menuContactsBadge" class="menu-badge menu-badge--accent">0</span>
+                    </button>
+                </li>
+                <li>
+                    <button class="menu-item"
+                            data-section="favorites"
+                            type="button">
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        <span data-i18n="menu.favorites">Favoritos</span>
+                        <span id="menuFavsBadge" class="menu-badge">0</span>
+                    </button>
+                </li>
+                <li>
+                    <button class="menu-item"
+                            data-section="stats"
+                            type="button">
+                        <i class="fas fa-chart-pie" aria-hidden="true"></i>
+                        <span data-i18n="menu.stats">Estadísticas</span>
+                    </button>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Sección: Configuración -->
+        <div class="menu-section">
+            <span class="menu-section-label" data-i18n="menu.section.config">Configuración</span>
+            <ul class="menu-list" role="list">
+                <li>
+                    <button class="menu-item"
+                            data-section="settings"
+                            type="button">
+                        <i class="fas fa-cog" aria-hidden="true"></i>
+                        <span data-i18n="menu.settings">Ajustes</span>
+                    </button>
+                </li>
+                <li>
+                    <button class="menu-item"
+                            id="menuChangeLang"
+                            type="button">
+                        <i class="fas fa-language" aria-hidden="true"></i>
+                        <span data-i18n="menu.language">Idioma</span>
+                        <span id="menuLangBadge" class="menu-badge menu-badge--lang">ES</span>
+                    </button>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Sección: Aplicación -->
+        <div class="menu-section">
+            <span class="menu-section-label" data-i18n="menu.section.app">Aplicación</span>
+            <ul class="menu-list" role="list">
+                <li>
+                    <button class="menu-item menu-item--pwa"
+                            id="menuInstallPWA"
+                            type="button">
+                        <i class="fas fa-download" aria-hidden="true"></i>
+                        <span data-i18n="menu.install">Instalar App</span>
+                        <span class="menu-badge menu-badge--pwa">PWA</span>
+                    </button>
+                </li>
+                <li>
+                    <button class="menu-item"
+                            data-section="about"
+                            type="button">
+                        <i class="fas fa-info-circle" aria-hidden="true"></i>
+                        <span data-i18n="menu.about">Acerca de</span>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer del menú -->
+    <div class="menu-footer">
+        <div class="menu-footer-copy">
+            &copy; 2026 Contactos Anónimos
+        </div>
+        <div class="menu-footer-version">
+            <i class="fas fa-circle pwa-status-dot" aria-hidden="true"></i>
+            <span id="menuPWAStatusText">PWA v4.0</span>
+        </div>
+    </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════
+     CONTENIDO PRINCIPAL
+════════════════════════════════════════════════════════════ -->
+<main class="container">
+
+    <!-- ── Header / Banner ────────────────────────────────────── -->
+    <header class="hero-banner">
+        <div class="css-logo">
+            <img src="src/assets/img/favicon.svg" alt="Logo" class="logo-icon-img">
+            <span class="logo-text">Contactos Anónimos</span>
+        </div>
+
+        <div class="banner-title">
+            <h1>
+                <span class="title-main" data-i18n="hero.title">Conecta sin límites</span>
+                <span class="title-sub" data-i18n="hero.subtitle">Privacidad total en cada mensaje</span>
+            </h1>
+        </div>
+
+        <div class="header-controls">
+            <button id="openMenuBtn" class="btn btn--icon menu-toggle-trigger" aria-label="Abrir menú">
+                <i class="fas fa-bars"></i>
+            </button>
+            <button id="shareWhatsAppChannel" class="btn btn--wa-channel">
+                <i class="fab fa-whatsapp"></i>
+                <span data-i18n="hero.channel">Canal Oficial</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ── Secciones de la App ────────────────────────────────── -->
+
+    <!-- SECCIÓN: CONTACTOS (Principal) -->
+    <section id="section-contacts" class="app-section app-section--active">
+        <!-- Aquí iría el contenido de contactos -->
+        <div class="card">
+            <h2 data-i18n="menu.contacts">Contactos</h2>
+            <p>Contenido de contactos optimizado.</p>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: FAVORITOS -->
+    <section id="section-favorites" class="app-section" hidden>
+        <div class="card">
+            <h2 data-i18n="menu.favorites">Favoritos</h2>
+            <p>Tus contactos favoritos aparecerán aquí.</p>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: ESTADÍSTICAS -->
+    <section id="section-stats" class="app-section" hidden>
+        <div class="card">
+            <h2 data-i18n="menu.stats">Estadísticas</h2>
+            <div id="statsContent">
+                <!-- Estadísticas dinámicas -->
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: AJUSTES -->
+    <section id="section-settings" class="app-section" hidden>
+        <div class="card">
+            <h2 data-i18n="menu.settings">Ajustes</h2>
+            <p>Configura tu experiencia.</p>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: ACERCA DE -->
+    <section id="section-about" class="app-section" hidden>
+        <div class="card">
+            <h2 data-i18n="menu.about">Acerca de</h2>
+            <p>Información sobre la aplicación.</p>
+        </div>
+    </section>
+
+</main>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SCRIPTS
+════════════════════════════════════════════════════════════ -->
+<!-- Core -->
+<script src="src/assets/js/db.js"                    defer></script>
+<script src="src/assets/js/api.js"                   defer></script>
+<script src="src/assets/js/themes.js"                defer></script>
+<script src="src/assets/js/ui-components.js"         defer></script>
+
+<!-- Módulos -->
+<script src="src/assets/js/menu.js"                  defer></script>
+<script src="src/assets/js/main.js"                  defer></script>
+
+<!-- PWA & Seguridad -->
+<script src="src/assets/js/sw-register.js"           defer></script>
+<script src="src/assets/js/pwa-install.js"           defer></script>
+<script src="src/assets/js/pwa-security.js"          defer></script>
+<script src="src/assets/js/security.js"              defer></script>
+
 </body>
 </html>

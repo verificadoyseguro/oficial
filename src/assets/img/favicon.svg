@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+    <!-- Fondo redondeado suave -->
+    <rect width="512" height="512" rx="120" fill="#03060c" />
+    
+    <!-- Símbolo de escudo/seguridad (basado en el original) -->
+    <g transform="translate(256, 256) scale(1.1)">
+        <!-- Capa exterior Azul (Confianza) -->
+        <path d="M-120,-160 C-60,-180 60,-180 120,-160 C140,-80 140,80 0,180 C-140,80 -140,-80 -120,-160 Z" fill="#148FE4" opacity="0.9" />
+        
+        <!-- Capa interior Verde (Conexión/WhatsApp) -->
+        <path d="M-80,-100 C-40,-115 40,-115 80,-100 C95,-40 95,40 0,110 C-95,40 -95,-40 -80,-100 Z" fill="#33BB64" />
+        
+        <!-- Detalle de brillo/reflejo -->
+        <path d="M-60,-90 C-30,-100 30,-100 60,-90 C70,-50 70,20 0,70 C-70,20 -70,-50 -60,-90 Z" fill="white" opacity="0.1" />
+    </g>
+    
+    <!-- Icono de teléfono minimalista central -->
+    <path d="M256,180 C230,180 210,200 210,226 L210,286 C210,312 230,332 256,332 C282,332 302,312 302,286 L302,226 C302,200 282,180 256,180 Z M256,310 C245,310 236,301 236,290 C236,279 245,270 256,270 C267,270 276,279 276,290 C276,301 267,310 256,310 Z" fill="white" />
+</svg>

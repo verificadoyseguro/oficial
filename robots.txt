@@ -1,0 +1,45 @@
+# robots.txt — Directivas para motores de búsqueda
+# Contactos Anónimos
+# Última actualización: 2025-01-01
+
+# Permitir a todos los bots
+User-agent: *
+Allow: /web/
+Disallow: /web/.github/
+Disallow: /web/docs/
+Disallow: /web/node_modules/
+Disallow: /*.json
+Disallow: /*.yml
+Disallow: /*.yaml
+Disallow: /*.md
+
+# Reglas específicas para Googlebot
+User-agent: Googlebot
+Allow: /web/
+Crawl-delay: 0
+
+# Reglas específicas para Bingbot
+User-agent: Bingbot
+Allow: /web/
+Crawl-delay: 0
+
+# Reglas específicas para Yandex
+User-agent: YandexBot
+Allow: /web/
+Crawl-delay: 0
+
+# Bloquear bots maliciosos comunes
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+# Sitemap
+Sitemap: https://cuentabaneadatemp.github.io/web/sitemap.xml

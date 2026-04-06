@@ -1,0 +1,44 @@
+name: Deploy to GitHub Pages
+
+on:
+  # Se ejecuta cuando se hace push a la rama principal
+  push:
+    branches: ["main", "master"]
+
+  # Permite ejecutar el flujo de trabajo manualmente desde la pestaña Actions
+  workflow_dispatch:
+
+# Otorga permisos para subir a GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Permite que un solo despliegue concurrente se ejecute a la vez
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  # Trabajo de despliegue
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Sube el contenido de la carpeta src
+          path: './src'
+      
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

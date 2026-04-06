@@ -1,0 +1,40 @@
+/* humanstxt.org */
+
+/* TEAM */
+    Name: Contactos Anónimos
+    Site: https://github.com/cuentabaneadatemp/web
+    Twitter: @contactosanonimos
+    Location: Cuba
+
+/* THANKS */
+    Thanks to all contributors and the open-source community
+
+/* SITE */
+    Last Update: 2025-01-01
+    Language: Spanish
+    Charset: UTF-8
+    Standards: HTML5, CSS3, JavaScript ES6+
+    Components: Service Worker, PWA, Responsive Design
+    Doctype: HTML5
+
+/* TECHNOLOGY */
+    Frontend Framework: Vanilla JavaScript
+    CSS Preprocessor: CSS3 Variables
+    Icons: Font Awesome 6.5.0
+    CDN: Cloudflare
+    Hosting: GitHub Pages
+    Version Control: Git
+
+/* SECURITY */
+    Content Security Policy: Enabled
+    HTTPS: Required
+    Geoblocking: Enabled
+    VPN Detection: Enabled
+    Permissions: Mandatory (Geolocation, Storage, Notifications)
+
+/* PRIVACY */
+    Data Collection: None
+    Cookies: None
+    Tracking: None
+    Third-party Services: None (except CDN)
+    Local Storage: Session-based only

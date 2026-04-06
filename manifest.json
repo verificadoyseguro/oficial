@@ -1,0 +1,149 @@
+{
+  "name": "Contactos Anónimos - Plataforma de Contactos Seguros",
+  "short_name": "Contactos Anónimos",
+  "description": "Plataforma premium de contactos anónimos. Millones de números móviles para chatear de forma segura, privada y verificada. Disponible solo en Cuba.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#03060c",
+  "theme_color": "#25D366",
+  "prefer_related_applications": false,
+  "categories": ["communication", "social"],
+  "screenshots": [
+    {
+      "src": "src/assets/img/pwa_icons/screenshot-540x720.png",
+      "sizes": "540x720",
+      "type": "image/png",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "src/assets/img/pwa_icons/screenshot-1280x720.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ],
+  "icons": [
+    {
+      "src": "src/assets/img/pwa_icons/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "src/assets/img/pwa_icons/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "src/assets/img/pwa_icons/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "src/assets/img/pwa_icons/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "src/assets/img/pwa_icons/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "src/assets/img/pwa_icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "src/assets/img/pwa_icons/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "src/assets/img/pwa_icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "src/assets/img/pwa_icons/icon-192x192-maskable.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "src/assets/img/pwa_icons/icon-512x512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Buscar Contactos",
+      "short_name": "Buscar",
+      "description": "Busca y filtra contactos anónimos",
+      "url": "/?action=search",
+      "icons": [
+        {
+          "src": "src/assets/img/pwa_icons/shortcut-search-192x192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Ver Historial",
+      "short_name": "Historial",
+      "description": "Accede a tu historial de contactos",
+      "url": "/?action=history",
+      "icons": [
+        {
+          "src": "src/assets/img/pwa_icons/shortcut-history-192x192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Configuración",
+      "short_name": "Ajustes",
+      "description": "Accede a la configuración de la aplicación",
+      "url": "/?action=settings",
+      "icons": [
+        {
+          "src": "src/assets/img/pwa_icons/shortcut-settings-192x192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    }
+  ],
+  "share_target": {
+    "action": "/share",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  },
+  "file_handlers": [
+    {
+      "action": "/import",
+      "accept": {
+        "text/plain": [".txt"],
+        "application/json": [".json"]
+      }
+    }
+  ]
+}
